@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+            <title>Kalimba</title>
+            <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid - 6 контейнеров</title>
+    <style>
+
+         body {
+            background-image: url('https://avatars.mds.yandex.net/i?id=cb7ca807fd48f7b6a6c6759cfad8f5c4e0591e3e-5859525-images-thumbs&n=13');
+            background-size: cover; /* Растягиваем изображение на весь экран */
+            background-position: center; /* Центрируем изображение */
+            background-repeat: no-repeat; /* Запрещаем повторение */
+            background-attachment: fixed; /* Фиксируем фон при прокрутке */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* 3 столбца */
+            grid-template-rows: auto auto; /* 2 ряда */
+            gap: 20px; /* расстояние между элементами */
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            background-color: #ecece4;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(20, 20, 20, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .grid-item h3 {
+            color: #333332;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .grid-item p {
+            color: #696766;
+            line-height: 1.5;
+            font-size: 0.9em;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 столбец на мобильных */
+            }
+        }
+    </style>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" class="nav-link active" aria-current="page"  href="#">Kalimba</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    
+        <li class="nav-item">
+          <a class="nav-link" href="#">Самоучитель</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Табы</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Калимба
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Укулеле</a></li>
+            <li><a class="dropdown-item" href="#">Гитара</a></li>
+            <li><a class="dropdown-item" href="#">Глюкофон</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+     <a href="#" title="Поиск">
+        <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      </form></a>
+    </div>
+  </div>
+</nav>
+
+<p style="margin-bottom: 40px;">
+<h1 style="text-align:center;">Статьи всякие</h1>
+<h6 style="text-align:center;color: #666;"></h6></p>
+ <div class="grid-container">
+        <!-- Контейнер 1 -->
+        <div class="grid-item">
+            <img src="https://kalimbaplay.ru/wp-content/uploads/2025/05/kalimba5.webp" alt="1">
+            <h3>Что такое калимба?</h3>
+            <p>Это небольшой текст для четвертого контейнера. Отлично подходит для карточек товаров или услуг.</p>
+        </div>
+        <!-- Контейнер 2 -->
+        <div class="grid-item">
+            <img src="https://i.kickstarter.com/assets/018/605/490/02034c2ef6559c079b1922b89c119a48_original.jpg?anim=false&fit=cover&gravity=auto&height=873&origin=ugc&q=92&v=1507133995&width=1552&sig=F3zB49SlPajjW0xJaR1GsvjFVVaQ6VU73xlxZas5c7s%3D" alt="2">
+            <h3>Как выбрать калимбу</h3>
+            <p>Это небольшой текст для первого контейнера. Здесь может быть описание или дополнительная информация.</p>
+        </div>
+
+        <!-- Контейнер 3 -->
+        <div class="grid-item">
+            <img src="https://avatars.mds.yandex.net/i?id=387589e94b12b35d49059887f8682d6f_l-5312449-images-thumbs&n=13" alt="3">
+            <h3>Виды калимб</h3>
+            <p>Это небольшой текст для второго контейнера. CSS Grid позволяет легко создавать адаптивные макеты.</p>
+        </div>
+
+        <!-- Контейнер 3 -->
+        <div class="grid-item">
+            <img src="https://kalimbaplay.ru/wp-content/uploads/2025/05/fine-chromatic-tuner.webp" alt="4">
+            <h3>Тюнер для калимбы</h3>
+            <p>Это небольшой текст для третьего контейнера. Grid система очень гибкая и мощная.</p>
+        </div>
+        
+        <!-- Контейнер 5 -->
+        <div class="grid-item">
+            <img src="https://kalimbaplay.ru/wp-content/uploads/2023/03/kalimba-istoria1.webp" alt="5">
+            <h3>История</h3>
+            <p>Это небольшой текст для пятого контейнера. Макет автоматически адаптируется под разные экраны.</p>
+        </div>
+
+        <!-- Контейнер 6 -->
+        <div class="grid-item">
+            <img src="https://via.placeholder.com/300x150/607D8B/white?text=Image+6" alt="Изображение 6">
+            <h3>Заголовок 6</h3>
+            <p>Это небольшой текст для шестого контейнера. Простая и понятная структура с использованием CSS Grid.</p>
+        </div>
+    </div>
+    </body>
+</html>
