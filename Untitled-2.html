@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как выбрать калимбу</title>
+      <style>
+           * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+     
+        .header {
+            background:#f1e5d7;
+            padding: 0.5% 0.5%;
+            position: relative;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #534843;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            min-width: 200px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #534843;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(248, 246, 243);
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f1e5d7;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f8f8;
+            color: #8B7355;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .favorites-btn {
+            background: none;
+            border: none;
+            color: #534843;
+            font-size: 1.2rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .auth-btn {
+            background: rgba(244, 241, 239, 0.899);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #534843;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+        }
+         body {
+            background-image: url('fon.webp');
+            background-size: cover; /* Растягиваем изображение на весь экран */
+            background-position: center; /* Центрируем изображение */
+            background-repeat: no-repeat; /* Запрещаем повторение */
+            background-attachment: fixed; /* Фиксируем фон при прокрутке */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+ 
+.colored-block {
+  background-color: #f1e5d7e1;
+  padding: 20px; /* Внутренние отступы */
+  margin: 30px; /* Внешние отступы по краям */
+  border-radius: 12px; /* Скругление углов */
+  
+  /* Настройки шрифта */
+  font-family: 'Arial', sans-serif; /* Шрифт */
+  font-size: 18px; /* Размер текста */
+  font-weight: 500; /* Жирность текста (normal, bold, 100-900) */
+  line-height: 1.5; /* Межстрочный интервал */
+  color: #534843; /* Цвет текста */
+  
+  /* Дополнительные стили */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Легкая тень */
+}
+        </style>
+</head>
+<body>
+     <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <h1 class="logo-text">Kalimba</h1>
+            </a> 
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link">Уроки</a></li>
+                    <li><a href="#" class="nav-link">Табы</a></li>
+                    <li><a href="#" class="nav-link">Самоучитель</a></li>
+                    <li><a href="#" class="nav-link">Магазин</a></li>  
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            Инструменты
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Калимба 8 язычков</a>
+                            <a href="#" class="dropdown-item">Калимба 17 язычков</a>
+                            <a href="#" class="dropdown-item">Калимба 21 язычок</a>
+                            <a href="#" class="dropdown-item">Хроматическая калимба</a>
+                        </div>
+                    </li>
+                </ul>
+            <div class="nav-actions">
+                <button class="favorites-btn">
+                    <span class="material-symbols-outlined">kid_star</span>
+                </button>     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=kid_star" />
+                <button class="auth-btn">Войти</button>
+            </div>
+        </nav>
+    </header>
+      <script>
+        // Обработчик для логотипа (возврат на главную)
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = '#';
+        });
+
+        document.querySelector('.auth-btn').addEventListener('click', function() {
+            // Здесь можно добавить логику для авторизации
+            alert('Форма авторизации');
+        });
+    </script>
+    
+<div class="text-container">
+  <div class="colored-block">
+<h1 style="text-align:center;">Выбор калимбы для начинающего</h1>
+    <p>Первое, на что обращают своё внимание новички и попадают на крючок маркетологов — это конечно внешний вид калимбы. В настоящее время большинство известных и неизвестных производителей делают корпус калимбы необычной формы, производят на нём декоративные вырезы, наносят красочные рисунки. В большинстве случаев, все эти украшения никак не состыковываются с качеством звучания инструмента, такие производители не учитывают акустические свойства корпуса калимбы, не придают должного внимания материалу из которого изготавливаются язычки инструмента и само ложе. В результате получается не инструмент с красивым звучанием, а просто сувенир, на котором не комфортно и не интересно играть. Поэтому не стоит делать акцент на обёртку, калимба для новичка должна быть именно инструментом, а не игрушкой, иначе не будет никакого интереса на ней играть и продолжать совершенствовать свои навыки.</p>
+    <h2 style="text-align:center;">Виды калимбы</h2>
+    <p>Калимба — это инструмент, который имеет большое количество разновидностей, отличающихся друг от друга количеством язычков, размером и строем. В данном случае мы затронем только те виды калимбы, которые можно приобрести на нашем внутреннем рынке и которые наиболее популярны, а значит на них можно найти различные обучающие уроки игры и табулатуры мелодий.</p>
+    <p>Существует два вида калимбы, широко распространённой именно в европейской части — это диатоническая или классическая и хроматическая калимба. Обыкновенная калимба имеет 17-ть язычков, свой стандартный строй и тональность До (C). Со звукорядом классической калимбы вы можете ознакомиться в разделе «Самоучитель игры».</p>
+    <p>Тональность любой калимбы можно изменить с помощью настройки язычков вручную. Любому новичку стоит начинать знакомство с калимбой именно с её классического (стандартного) вида, потому что 17-ть язычков позволяют играть практически все мелодии и на такой инструмент можно легко найти как различные обучающие уроки, так и готовые табы популярных мелодий.</p>
+    <p>Хроматическая калимба — достаточно сложный инструмент, на нём язычков гораздо больше и расположены они не в один, а в два и иногда даже три ряда, тем самым играть на ней труднее. Основным преимуществом хроматической калимбы является широкий спектр её звучания, на таком инструменте можно сыграть всё что угодно, при наличии определённых навыков. Начинающим хроматическая калимба не подойдёт, такой инструмент предназначен для опытных музыкантов.</p>
+    <h2 style="text-align:center;">Материал и формат корпуса калимбы</h2>
+    <p>Разобравшись с необходимым к приобретению видом калимбы, перейдём к материалам из которых она изготовлена. Калимбы изготавливаются из дерева и акрила (пластика). И пластиковые и деревянные калимбы могут иметь либо сплошную основу, либо полую (акустическую), как у гитары.</p>
+    <p>Материал корпуса калимбы напрямую влияет на её звучание, как и материал изготовления язычков. Деревянная калимба отлична по звучанию от акриловой, если говорить о цельном корпусе, дерево звучит приятнее и мягче, в то время как акрил звонче, тут уже дело вкуса. Если же рассматривать акустический формат калимбы, то дерево однозначно лучше на 100%, акрил не даёт такой акустики (отражения звука), а наоборот искажает его в худшую сторону. Вообще, акустический формат корпуса калимбы в акриловом исполнении появился совсем недавно и это было явно рассчитано производителем не в сторону улучшения качества звучания, а в сторону маркетинга.</p>
+    <p>Выбирая между калимбой с акустическим корпусом или цельным (сплошным), важно учитывать основные моменты. Акустический корпус громче цельной доски — это очевидно, тут важно понять нужна ли вам большая громкость или нет. Помимо громкости, в акустических корпусах часто делают на задней части дополнительные два отверстия, с помощью которых при игре можно создавать эффекты, открывая их и перекрывая пальцами. С другой стороны, цельной корпус (доска) намного практичнее акустического, такой инструмент крепче и маловероятно может пострадать при падении или каком-то другом физическом воздействии.</p>
+    <p>В любом случае, оба формата корпуса будут хороши только при их правильном исполнении. Звучание калимбы строится на отражении звука от корпуса и если корпус сделан без учета хорошей отражаемости, то звук будет значительно хуже. Именно по этой причине рекомендуется покупать калимбу от известного производителя, у которого уже налажено производство и инструмент прошёл проверку временем.</p>
+</div>
+</div>
+</body>
+</html>
