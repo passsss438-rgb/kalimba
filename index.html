@@ -201,7 +201,7 @@
             line-height: 1.5;
             font-size: 0.9em;
         }
-        /* Адаптивность для мобильных устройств */
+        /* Адаптивность*/
         @media (max-width: 768px) {
             .grid-container {
                 grid-template-columns: 1fr; /* 1 столбец на мобильных */
@@ -243,6 +243,16 @@
         </nav>
     </header>
 
+         <script>
+        // Обработчик для логотипа (возврат на главную)
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = '#';
+        });
+        document.querySelector('.auth-btn').addEventListener('click', function() {
+            alert('Форма авторизации');
+        });
+    </script>
+    
 <p style="margin-bottom: 40px;">
 <h1 style="text-align:center;">Статьи всякие</h1>
 <h6 style="text-align:center;color: #534843;"></h6></p>
@@ -251,7 +261,7 @@
         <!-- Контейнер 1 -->
         <a href="Untitled-1.html" style="text-decoration: none;">
             <div class="grid-item">
-            <img src="kalimba5.webp" alt="1">
+            <img src="2.avif" alt="1">
             <h3>Что такое калимба?</h3>
             <p>Калимба — это компактный музыкальный инструмент, который по звучанию напоминает музыкальную шкатулку</p>
         </div>
@@ -260,7 +270,7 @@
         <!-- Контейнер 2 -->
        <a href="Untitled-2.html" style="text-decoration: none;">
         <div class="grid-item">
-            <img src="2.avif" alt="2">
+            <img src="3.webp" alt="2">
             <h3>Как выбрать калимбу</h3>
             <p>Какую калимбу выбрать если вы только начинаете знакомство с этим инструментом</p>
         </div>
@@ -268,7 +278,7 @@
      
         <!-- Контейнер 3 -->
         <div class="grid-item">
-            <img src="3.webp" alt="3">
+            <img src="kalimba5.webp" alt="3">
             <h3>Виды калимб</h3>
             <p>Это небольшой текст для второго контейнера. CSS Grid позволяет легко создавать адаптивные макеты.</p>
         </div>
@@ -296,5 +306,6 @@
     </div>
     </body>
 </html>
+
 
 
