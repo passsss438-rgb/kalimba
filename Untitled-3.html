@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как играть на калимбе</title>
+      <style>
+           * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+     
+        .header {
+            background:#f1e5d7;
+            padding: 0.5% 0.5%;
+            position: relative;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #534843;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            min-width: 200px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #534843;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(248, 246, 243);
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f1e5d7;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f8f8;
+            color: #8B7355;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .favorites-btn {
+            background: none;
+            border: none;
+            color: #534843;
+            font-size: 1.2rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .auth-btn {
+            background: rgba(244, 241, 239, 0.899);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #534843;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+        }
+         body {
+            background-image: url('fon.webp');
+            background-size: cover; /* Растягиваем изображение на весь экран */
+            background-position: center; /* Центрируем изображение */
+            background-repeat: no-repeat; /* Запрещаем повторение */
+            background-attachment: fixed; /* Фиксируем фон при прокрутке */
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+ 
+.colored-block {
+  background-color: #f1e5d7e1;
+  padding: 20px; /* Внутренние отступы */
+  margin: 30px; /* Внешние отступы по краям */
+  border-radius: 12px; /* Скругление углов */
+  
+  /* Настройки шрифта */
+  font-family: 'Arial', sans-serif; /* Шрифт */
+  font-size: 18px; /* Размер текста */
+  font-weight: 500; /* Жирность текста (normal, bold, 100-900) */
+  line-height: 1.5; /* Межстрочный интервал */
+  color: #534843; /* Цвет текста */
+  
+  /* Дополнительные стили */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Легкая тень */
+}
+        </style>
+</head>
+<body>
+      <header class="header">
+        <nav class="nav-container">
+            <a href="https://passsss438-rgb.github.io/kalimba/#" class="logo">
+                <h1 class="logo-text">Kalimba</h1>
+            </a> 
+            <ul class="nav-menu">
+                <li><a href="https://passsss438-rgb.github.io/kalimba/tabs.html" class="nav-link">Табы</a></li>
+                <li><a href="https://passsss438-rgb.github.io/kalimba/camoyzitel.html" class="nav-link">Самоучитель</a></li>
+                <li><a href="https://passsss438-rgb.github.io/kalimba/shop.html" class="nav-link">Магазин</a></li>  
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Инструменты
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Калимба 8 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 17 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 21 язычок</a>
+                        <a href="#" class="dropdown-item">Хроматическая калимба</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <button class="favorites-btn">
+                    <span class="material-symbols-outlined">kid_star</span>
+                </button>
+                <button class="auth-btn">Войти</button>
+            </div>
+        </nav>
+    </header>
+     <script>
+        document.querySelector('.auth-btn').addEventListener('click', function() {
+            alert('Форма авторизации');
+        });   
+ </script>
+    
+<div class="text-container">
+  <div class="colored-block">
+<h1 style="text-align:center;">Как играть на калимбе</h1>
+    <p>Калимба является достаточно простым инструментом и играть на ней, при желании, сможет научиться каждый, но для начала необходимо знать основы игры и конструкции самого инструмента. Звучание калимбы напоминает звук музыкальной шкатулки, даже произвольное дерганье язычков производит приятный, не раздражающий звук, в отличии от других инструментов. Калимба может быть практически любой формы, даже самой невероятной, но корпус обычно производитель изготавливает с учетом того, чтобы инструмент удобно лежал в ладонях.</p>
+   <p>Играют на калимбе двумя большими пальцами обеих рук, можно играть подушечками пальцев или ногтями, но разница есть. При игре подушечками пальцев — звук калимбы более естественный, но подушечки можно натереть до мозолей, поэтому многие покупают специальные напальчники. При игре ногтями звук издается чрезмерно звонкий и громкий, хотя можно со временем приспособится.</p>
+   <p>Можно калимбу просто положить и играть, но к примеру, у калимбы с акустическим корпусом на задней части часто бывают дополнительные акустические отверстия, они предназначены для изменения звука (создания эффектов), путем прикрывания их вместе или поочередно. Естественно, положив калимбу, данные отверстия закроются и работать не будут.</p>
+    <h2 style="text-align:center;">Как играть по табам</h2>
+    <p>Ноты для калимбы обозначаются в упрощенной форме, цифрами и называются табулатуры. По табулатуре очень просто сыграть мелодию, без знаний нотной грамоты. Обозначения табулатур соответствует обозначению язычков калимбы, поэтому никаких трудностей у вас не возникнет.</p>
+    <p>На калимбе можно играть как одиночными нотами, дергая каждый язычок по отдельности, так и аккордами — задевая сразу несколько язычков в определенном порядке. Игра аккордами требует навыка, поэтому новичкам рекомендуется разучивать простые мелодии, без аккордов и сложных переходов. Более подробная информация о том, как читать табулатуры калимбы, имеется на нашем сайте в отдельной статье.</p>
+</div>
+</div>
+
+</body>
+
+</html>
+
+
+
