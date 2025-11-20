@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог калимб - Магазин Kalimba</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+     
+        .header {
+            background: #f1e5d7;
+            padding: 0.5% 0.5%;
+            position: relative;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #534843;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            min-width: 200px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #534843;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(248, 246, 243);
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f1e5d7;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f8f8;
+            color: #8B7355;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .favorites-btn {
+            background: none;
+            border: none;
+            color: #534843;
+            font-size: 1.2rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .auth-btn {
+            background: rgba(244, 241, 239, 0.899);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #534843;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+        }
+
+        body {
+            background-image: url('fon.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Стили для каталога */
+        .catalog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #534843;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #8B7355;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: #f1e5d7e1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #534843;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .product-features li {
+            color: #8B7355;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .product-features li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8B7355;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B7355;
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            background: #8B7355;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .buy-btn:hover {
+            background: #534843;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+
+        .filters-section {
+            background: #f1e5d7e1;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .filters-title {
+            color: #534843;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #534843;
+            font-size: 0.95rem;
+            min-width: 150px;
+        }
+
+        .cart-indicator {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #8B7355;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .catalog-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+            }
+            
+            .filter-select {
+                min-width: 100%;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=kid_star" />
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <h1 class="logo-text">Kalimba</h1>
+            </a> 
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Уроки</a></li>
+                <li><a href="#" class="nav-link">Табы</a></li>
+                <li><a href="#" class="nav-link">Самоучитель</a></li>
+                <li><a href="#" class="nav-link" style="background: rgba(139, 115, 85, 0.1);">Магазин</a></li>  
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Инструменты
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Калимба 8 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 17 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 21 язычок</a>
+                        <a href="#" class="dropdown-item">Хроматическая калимба</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <button class="favorites-btn">
+                    <span class="material-symbols-outlined">kid_star</span>
+                </button>
+
+                <button class="auth-btn">Войти</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="catalog-container">
+        <h1 class="page-title">Каталог калимб</h1>
+        <p class="page-subtitle">Выберите идеальную калимбу для вашего музыкального путешествия</p>
+
+        <div class="filters-section">
+            <h3 class="filters-title">Фильтры</h3>
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>Все категории</option>
+                    <option>Для начинающих</option>
+                    <option>Профессиональные</option>
+                    <option>Дорожные</option>
+                </select>
+                <select class="filter-select">
+                    <option>Количество язычков</option>
+                    <option>8 язычков</option>
+                    <option>17 язычков</option>
+                    <option>21 язычок</option>
+                </select>
+                <select class="filter-select">
+                    <option>Материал</option>
+                    <option>Дерево</option>
+                    <option>Акрил</option>
+                    <option>Бамбук</option>
+                </select>
+                <select class="filter-select">
+                    <option>Сортировка</option>
+                    <option>По цене (возрастание)</option>
+                    <option>По цене (убывание)</option>
+                    <option>По популярности</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="catalog-grid">
+            <!-- Продукт 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="7463629497.jpg" alt="Kalimba Basic">
+                </div>
+                <div class="product-info">
+                    <h3>Kalimba Basic</h3>
+                    <p class="product-description">Идеальная калимба для начинающих с чистым и нежным звучанием</p>
+                    <ul class="product-features">
+                        <li>8 стальных язычков</li>
+                        <li>Корпус из махагони</li>
+                        <li>В комплекте чехол</li>
+                    </ul>
+                    <div class="product-price">2 490 ₽</div>
+                    <button class="buy-btn">В корзину</button>
+                </div>
+            </div>
+
+            <!-- Продукт 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="17.jpg" alt="Kalimba Pro">
+                </div>
+                <div class="product-info">
+                    <h3>Kalimba Pro</h3>
+                    <p class="product-description">Профессиональная модель с расширенным диапазоном и богатым звуком</p>
+                    <ul class="product-features">
+                        <li>17 язычков</li>
+                        <li>Кленовый корпус</li>
+                        <li>Резонаторное отверстие</li>
+                    </ul>
+                    <div class="product-price">4 290 ₽</div>
+                    <button class="buy-btn">В корзину</button>
+                </div>
+            </div>
+
+            <!-- Продукт 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="tr.webp" alt="Kalimba Travel">
+                </div>
+                <div class="product-info">
+                    <h3>Kalimba Travel</h3>
+                    <p class="product-description">Компактная дорожная версия с удобным чехлом для музыки в пути</p>
+                    <ul class="product-features">
+                        <li>10 язычков</li>
+                        <li>Бамбуковый корпус</li>
+                        <li>Водонепроницаемый чехол</li>
+                    </ul>
+                    <div class="product-price">3 590 ₽</div>
+                    <button class="buy-btn">В корзину</button>
+                </div>
+            </div>
+
+            <!-- Продукт 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="45.jpg" alt="Kalimba Elephant">
+                </div>
+                <div class="product-info">
+                    <h3>Kalimba Elephant</h3>
+                    <p class="product-description">Эксклюзивная модель с художественной резьбой в африканском стиле</p>
+                    <ul class="product-features">
+                        <li>17 язычков</li>
+                        <li>Ручная резьба</li>
+                        <li>Уникальный дизайн</li>
+                    </ul>
+                    <div class="product-price">5 990 ₽</div>
+                    <button class="buy-btn">В корзину</button>
+                </div>
+            </div>
+
+            <!-- Продукт 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="akk.jpg" alt="Kalimba Crystal">
+                </div>
+                <div class="product-info">
+                    <h3>Kalimba Crystal</h3>
+                    <p class="product-description">Прозрачная акриловая калимба с современным дизайном и LED-подсветкой</p>
+                    <ul class="product-features">
+                        <li>21 язычок</li>
+                        <li>Акриловый корпус</li>
+                        <li>RGB подсветка</li>
+                    </ul>
+                    <div class="product-price">6 490 ₽</div>
+                    <button class="buy-btn">В корзину</button>
+                </div>
+            </div>
+
+            <!-- Продукт 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="kids.jpg" alt="Kalimba Kids">
+                </div>
+                <div class="product-info">
+                    <h3>Kalimba Kids</h3>
+                    <p class="product-description">Яркая и безопасная калимба для детей с обучающими наклейками</p>
+                    <ul class="product-features">
+                        <li>7 цветных язычков</li>
+                        <li>Защищенные края</li>
+                        <li>Обучающие материалы</li>
+                    </ul>
+                    <div class="product-price">1 990 ₽</div>
+                    <button class="buy-btn">В корзину</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
