@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Самоучитель калимбы - Kalimba</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+     
+        .header {
+            background: #f1e5d7;
+            padding: 0.5% 0.5%;
+            position: relative;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #534843;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            min-width: 200px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #534843;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(248, 246, 243);
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f1e5d7;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f8f8;
+            color: #8B7355;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .favorites-btn {
+            background: none;
+            border: none;
+            color: #534843;
+            font-size: 1.2rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .auth-btn {
+            background: rgba(244, 241, 239, 0.899);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #534843;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+        }
+
+        body {
+            background-image: url('fon.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Стили для самоучителя */
+        .tutorial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #534843;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #8B7355;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .tabs-section {
+            background: #f1e5d7e1;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .tabs-header {
+            display: flex;
+            background: #8B7355;
+            border-bottom: 2px solid #534843;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: white;
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .tab-btn.active {
+            background: #534843;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #8B7355;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .lesson-card h3 {
+            color: #534843;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .lesson-card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #8B7355;
+        }
+
+        .lesson-duration {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .difficulty {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .difficulty.beginner {
+            background: #E8F5E8;
+            color: #2E7D32;
+        }
+
+        .difficulty.intermediate {
+            background: #E3F2FD;
+            color: #1565C0;
+        }
+
+        .difficulty.advanced {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .start-btn {
+            background: #8B7355;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .start-btn:hover {
+            background: #534843;
+            transform: translateY(-2px);
+        }
+
+        .theory-section {
+            background: #f1e5d7e1;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: #534843;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #8B7355;
+            padding-bottom: 10px;
+        }
+
+        .theory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .theory-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .theory-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .theory-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .theory-card h4 {
+            color: #534843;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .theory-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .progress-section {
+            background: #f1e5d7e1;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #8B7355, #534843);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 35%; /* Пример прогресса */
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #534843;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .tabs-header {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                padding: 15px;
+            }
+            
+            .lesson-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .theory-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="https://passsss438-rgb.github.io/kalimba/#" class="logo">
+                <h1 class="logo-text">Kalimba</h1>
+            </a> 
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Уроки</a></li>
+                <li><a href="#" class="nav-link">Табы</a></li>
+                <li><a href="#" class="nav-link" style="background: rgba(139, 115, 85, 0.1);">Самоучитель</a></li>
+                <li><a href="https://passsss438-rgb.github.io/kalimba/shop.html" class="nav-link">Магазин</a></li>  
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Инструменты
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Калимба 8 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 17 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 21 язычок</a>
+                        <a href="#" class="dropdown-item">Хроматическая калимба</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <button class="favorites-btn">
+                    <span class="material-symbols-outlined">kid_star</span>
+                </button>
+                <button class="auth-btn">Войти</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="tutorial-container">
+        <h1 class="page-title">Самоучитель калимбы</h1>
+        <p class="page-subtitle">Освойте искусство игры на калимбе с нуля до профессионального уровня</p>
+
+        <!-- Прогресс обучения -->
+        <div class="progress-section">
+            <h2 class="section-title">Ваш прогресс обучения</h2>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-stats">
+                <span>Начальный уровень</span>
+                <span>35% завершено</span>
+            </div>
+        </div>
+
+        <!-- Теория -->
+        <div class="theory-section">
+            <h2 class="section-title">Основы теории</h2>
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <div class="theory-icon">🎵</div>
+                    <h4>Нотная грамота</h4>
+                    <p>Изучите основы нотной записи и расположение нот на калимбе</p>
+                </div>
+                <div class="theory-card">
+                    <div class="theory-icon">🎼</div>
+                    <h4>Ритм и такт</h4>
+                    <p>Освойте ритмические patterns и научитесь считать такты</p>
+                </div>
+                <div class="theory-card">
+                    <div class="theory-icon">✨</div>
+                    <h4>Техника звукоизвлечения</h4>
+                    <p>Правильная постановка рук и техника игры большим пальцем</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Табы с уроками -->
+        <div class="tabs-section">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="openTab('practice')">Практика</button>
+                <button class="tab-btn" onclick="openTab('theory')">Теория</button>
+                <button class="tab-btn" onclick="openTab('repertoire')">Репертуар</button>
+            </div>
+
+            <!-- Вкладка Практика -->
+            <div id="practice" class="tab-content active">
+                <h2 class="section-title">Практические уроки</h2>
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="lesson-duration">⏱️ 15 мин</span>
+                            <span class="difficulty beginner">Начальный</span>
+                        </div>
+                        <h3>Урок 1: Знакомство с калимбой</h3>
+                        <p>Основы посадки, постановка рук, первые звуки</p>
+                        <button class="start-btn">Начать урок</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="lesson-duration">⏱️ 20 мин</span>
+                            <span class="difficulty beginner">Начальный</span>
+                        </div>
+                        <h3>Урок 2: Простые мелодии</h3>
+                        <p>Играем "В траве сидел кузнечик" и "Jingle Bells"</p>
+                        <button class="start-btn">Начать урок</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="lesson-duration">⏱️ 25 мин</span>
+                            <span class="difficulty intermediate">Средний</span>
+                        </div>
+                        <h3>Урок 3: Аккорды и гармонии</h3>
+                        <p>Изучаем базовые аккорды и их последовательности</p>
+                        <button class="start-btn">Начать урок</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="lesson-duration">⏱️ 30 мин</span>
+                            <span class="difficulty intermediate">Средний</span>
+                        </div>
+                        <h3>Урок 4: Вибрато и глиссандо</h3>
+                        <p>Осваиваем продвинутые техники звукоизвлечения</p>
+                        <button class="start-btn">Начать урок</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Теория -->
+            <div id="theory" class="tab-content">
+                <h2 class="section-title">Теоретические материалы</h2>
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <h3>Музыкальная теория для калимбы</h3>
+                        <p>Ноты, октавы, тональности и их применение в игре на калимбе</p>
+                        <button class="start-btn">Изучить</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <h3>Чтение табулатур</h3>
+                        <p>Как читать и использовать табы для калимбы</p>
+                        <button class="start-btn">Изучить</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <h3>Ритмические упражнения</h3>
+                        <p>Развитие чувства ритма и метра</p>
+                        <button class="start-btn">Изучить</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <h3>Импровизация</h3>
+                        <p>Основы создания собственных мелодий</p>
+                        <button class="start-btn">Изучить</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Вкладка Репертуар -->
+            <div id="repertoire" class="tab-content">
+                <h2 class="section-title">Репертуар для отработки</h2>
+                <div class="lesson-grid">
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="difficulty beginner">Легко</span>
+                        </div>
+                        <h3>Народные мелодии</h3>
+                        <p>"Во поле береза стояла", "Калинка"</p>
+                        <button class="start-btn">Играть</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="difficulty intermediate">Средне</span>
+                        </div>
+                        <h3>Популярные песни</h3>
+                        <p>"Hallelujah", "Perfect", "Shape of You"</p>
+                        <button class="start-btn">Играть</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="difficulty advanced">Сложно</span>
+                        </div>
+                        <h3>Классические произведения</h3>
+                        <p>Бах, Моцарт, Бетховен в адаптации для калимбы</p>
+                        <button class="start-btn">Играть</button>
+                    </div>
+
+                    <div class="lesson-card">
+                        <div class="lesson-meta">
+                            <span class="difficulty advanced">Сложно</span>
+                        </div>
+                        <h3>Саундтреки из фильмов</h3>
+                        <p>Мелодии из "Ходячий замок", "Пираты Карибского моря"</p>
+                        <button class="start-btn">Играть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Скрыть все вкладки
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            
+            // Убрать активный класс со всех кнопок
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Показать выбранную вкладку и активировать кнопку
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
