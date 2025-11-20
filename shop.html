@@ -365,16 +365,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=kid_star" />
 </head>
 <body>
-    <header class="header">
+   <header class="header">
         <nav class="nav-container">
-             <a href="https://passsss438-rgb.github.io/kalimba/#" class="logo" style="text-decoration: none;">
+            <a href="https://passsss438-rgb.github.io/kalimba/#" class="logo">
                 <h1 class="logo-text">Kalimba</h1>
             </a> 
             <ul class="nav-menu">
-                <li><a href="#" class="nav-link">Уроки</a></li>
-                <li><a href="#" class="nav-link">Табы</a></li>
-                <li><a href="#" class="nav-link">Самоучитель</a></li>
-                <li><a href="#" class="nav-link" style="background: rgba(139, 115, 85, 0.1);">Магазин</a></li>  
+                <li><a href="https://passsss438-rgb.github.io/kalimba/tabs.html" class="nav-link">Табы</a></li>
+                <li><a href="https://passsss438-rgb.github.io/kalimba/camoyzitel.html" class="nav-link" style="background: rgba(139, 115, 85, 0.1);">Самоучитель</a></li>
+                <li><a href="https://passsss438-rgb.github.io/kalimba/shop.html" class="nav-link">Магазин</a></li>  
                 <li class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle">
                         Инструменты
@@ -392,11 +391,15 @@
                 <button class="favorites-btn">
                     <span class="material-symbols-outlined">kid_star</span>
                 </button>
-
                 <button class="auth-btn">Войти</button>
             </div>
         </nav>
     </header>
+     <script>
+        document.querySelector('.auth-btn').addEventListener('click', function() {
+            alert('Форма авторизации');
+        });   
+ </script>
 
     <div class="catalog-container">
         <h1 class="page-title">Каталог калимб</h1>
@@ -544,3 +547,4 @@
     </div>
 </body>
 </html>
+
