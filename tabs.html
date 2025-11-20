@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Табы для калимбы - Kalimba</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+     
+        .header {
+            background: #f1e5d7;
+            padding: 0.5% 0.5%;
+            position: relative;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #534843;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            min-width: 200px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #534843;
+            font-size: 0.95rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgb(248, 246, 243);
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f1e5d7;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f8f8;
+            color: #8B7355;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .favorites-btn {
+            background: none;
+            border: none;
+            color: #534843;
+            font-size: 1.2rem;
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .auth-btn {
+            background: rgba(244, 241, 239, 0.899);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #534843;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 968px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+        }
+
+        body {
+            background-image: url('fon.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Стили для страницы табов */
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #534843;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #8B7355;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .filters-section {
+            background: #f1e5d7e1;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .filters-title {
+            color: #534843;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #534843;
+            font-size: 0.95rem;
+            min-width: 150px;
+        }
+
+        .tabs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .tab-card {
+            background: #f1e5d7e1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .tab-preview {
+            height: 200px;
+            background: #8B7355;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-preview::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139, 115, 85, 0.8), rgba(83, 72, 67, 0.8));
+        }
+
+        .tab-preview-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .tab-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #534843;
+            font-weight: 600;
+        }
+
+        .tab-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+
+        .tab-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #8B7355;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .difficulty.easy {
+            background: #E8F5E8;
+            color: #2E7D32;
+        }
+
+        .difficulty.medium {
+            background: #FFF3E0;
+            color: #EF6C00;
+        }
+
+        .difficulty.hard {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .download-btn {
+            background: #8B7355;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .download-btn:hover {
+            background: #534843;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+
+        .quick-tabs {
+            background: #f1e5d7e1;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .quick-tabs-title {
+            color: #534843;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .quick-tabs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-tab {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: #534843;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quick-tab:hover {
+            border-color: #8B7355;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.2);
+        }
+
+        .quick-tab-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .quick-tab-artist {
+            font-size: 0.9rem;
+            color: #8B7355;
+        }
+
+        @media (max-width: 768px) {
+            .tabs-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+            }
+            
+            .filter-select {
+                min-width: 100%;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .quick-tabs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=kid_star" />
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <h1 class="logo-text">Kalimba</h1>
+            </a> 
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Уроки</a></li>
+                <li><a href="#" class="nav-link" style="background: rgba(139, 115, 85, 0.1);">Табы</a></li>
+                <li><a href="#" class="nav-link">Самоучитель</a></li>
+                <li><a href="#" class="nav-link">Магазин</a></li>  
+                <li class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Инструменты
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Калимба 8 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 17 язычков</a>
+                        <a href="#" class="dropdown-item">Калимба 21 язычок</a>
+                        <a href="#" class="dropdown-item">Хроматическая калимба</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <button class="favorites-btn">
+                    <span class="material-symbols-outlined">kid_star</span>
+                </button>
+                <button class="auth-btn">Войти</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="tabs-container">
+        <h1 class="page-title">Табы для калимбы</h1>
+        <p class="page-subtitle">Ноты и табулатуры для вашей любимой музыки</p>
+
+        <div class="quick-tabs">
+            <h2 class="quick-tabs-title">Популярные табы</h2>
+            <div class="quick-tabs-grid">
+                <a href="#" class="quick-tab">
+                    <div class="quick-tab-title">Hallelujah</div>
+                    <div class="quick-tab-artist">Leonard Cohen</div>
+                </a>
+                <a href="#" class="quick-tab">
+                    <div class="quick-tab-title">Perfect</div>
+                    <div class="quick-tab-artist">Ed Sheeran</div>
+                </a>
+                <a href="#" class="quick-tab">
+                    <div class="quick-tab-title">River Flows In You</div>
+                    <div class="quick-tab-artist">Yiruma</div>
+                </a>
+                <a href="#" class="quick-tab">
+                    <div class="quick-tab-title">Can't Help Falling In Love</div>
+                    <div class="quick-tab-artist">Elvis Presley</div>
+                </a>
+                <a href="#" class="quick-tab">
+                    <div class="quick-tab-title">Shape of You</div>
+                    <div class="quick-tab-artist">Ed Sheeran</div>
+                </a>
+                <a href="#" class="quick-tab">
+                    <div class="quick-tab-title">See You Again</div>
+                    <div class="quick-tab-artist">Wiz Khalifa</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="filters-section">
+            <h3 class="filters-title">Фильтры табов</h3>
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>Все жанры</option>
+                    <option>Поп-музыка</option>
+                    <option>Саундтреки</option>
+                    <option>Классика</option>
+                    <option>Народные</option>
+                </select>
+                <select class="filter-select">
+                    <option>Сложность</option>
+                    <option>Начальная</option>
+                    <option>Средняя</option>
+                    <option>Продвинутая</option>
+                </select>
+                <select class="filter-select">
+                    <option>Количество язычков</option>
+                    <option>8 язычков</option>
+                    <option>17 язычков</option>
+                    <option>21 язычок</option>
+                </select>
+                <select class="filter-select">
+                    <option>Сортировка</option>
+                    <option>По популярности</option>
+                    <option>По новизне</option>
+                    <option>По алфавиту</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tabs-grid">
+            <!-- Таб 1 -->
+            <div class="tab-card">
+                <div class="tab-preview">
+                    <div class="tab-preview-content">
+                        🎵 Табы
+                    </div>
+                </div>
+                <div class="tab-info">
+                    <h3>Hallelujah - Leonard Cohen</h3>
+                    <p class="tab-description">Красивая и мелодичная композиция, идеально подходящая для калимбы. Простая аранжировка для начинающих.</p>
+                    <div class="tab-meta">
+                        <span class="difficulty easy">Начальная</span>
+                        <span>17 язычков</span>
+                    </div>
+                    <a href="#" class="download-btn">Скачать PDF</a>
+                </div>
+            </div>
+
+            <!-- Таб 2 -->
+            <div class="tab-card">
+                <div class="tab-preview">
+                    <div class="tab-preview-content">
+                        🎵 Табы
+                    </div>
+                </div>
+                <div class="tab-info">
+                    <h3>River Flows In You - Yiruma</h3>
+                    <p class="tab-description">Знаменитая фортепианная композиция в адаптации для калимбы. Потребует некоторой практики.</p>
+                    <div class="tab-meta">
+                        <span class="difficulty medium">Средняя</span>
+                        <span>21 язычок</span>
+                    </div>
+                    <a href="#" class="download-btn">Скачать PDF</a>
+                </div>
+            </div>
+
+            <!-- Таб 3 -->
+            <div class="tab-card">
+                <div class="tab-preview">
+                    <div class="tab-preview-content">
+                        🎵 Табы
+                    </div>
+                </div>
+                <div class="tab-info">
+                    <h3>Perfect - Ed Sheeran</h3>
+                    <p class="tab-description">Романтическая баллада в простой аранжировке. Отлично звучит на калимбе.</p>
+                    <div class="tab-meta">
+                        <span class="difficulty easy">Начальная</span>
+                        <span>17 язычков</span>
+                    </div>
+                    <a href="#" class="download-btn">Скачать PDF</a>
+                </div>
+            </div>
+
+            <!-- Таб 4 -->
+            <div class="tab-card">
+                <div class="tab-preview">
+                    <div class="tab-preview-content">
+                        🎵 Табы
+                    </div>
+                </div>
+                <div class="tab-info">
+                    <h3>Game of Thrones - Main Theme</h3>
+                    <p class="tab-description">Эпическая тема из сериала. Сложная аранжировка для продвинутых игроков.</p>
+                    <div class="tab-meta">
+                        <span class="difficulty hard">Сложная</span>
+                        <span>21 язычок</span>
+                    </div>
+                    <a href="#" class="download-btn">Скачать PDF</a>
+                </div>
+            </div>
+
+            <!-- Таб 5 -->
+            <div class="tab-card">
+                <div class="tab-preview">
+                    <div class="tab-preview-content">
+                        🎵 Табы
+                    </div>
+                </div>
+                <div class="tab-info">
+                    <h3>Can't Help Falling In Love</h3>
+                    <p class="tab-description">Вечная классика Элвиса Пресли. Простая и красивая мелодия.</p>
+                    <div class="tab-meta">
+                        <span class="difficulty easy">Начальная</span>
+                        <span>8 язычков</span>
+                    </div>
+                    <a href="#" class="download-btn">Скачать PDF</a>
+                </div>
+            </div>
+
+            <!-- Таб 6 -->
+            <div class="tab-card">
+                <div class="tab-preview">
+                    <div class="tab-preview-content">
+                        🎵 Табы
+                    </div>
+                </div>
+                <div class="tab-info">
+                    <h3>Shape of You - Ed Sheeran</h3>
+                    <p class="tab-description">Популярный хит в адаптации для калимбы. Ритмичная и веселая композиция.</p>
+                    <div class="tab-meta">
+                        <span class="difficulty medium">Средняя</span>
+                        <span>17 язычков</span>
+                    </div>
+                    <a href="#" class="download-btn">Скачать PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
